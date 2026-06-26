@@ -1,4 +1,4 @@
-#public rtb
+################## public rtb
 resource "aws_route_table" "public-rtb" {
   vpc_id = aws_vpc.us-east-1.id
 
@@ -12,7 +12,7 @@ resource "aws_route_table" "public-rtb" {
   }
 }
 
-#private rtb
+################# private rtb
 resource "aws_route_table" "private-rtb" {
   vpc_id = aws_vpc.us-east-1.id
 
