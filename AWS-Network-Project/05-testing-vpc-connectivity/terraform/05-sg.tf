@@ -10,6 +10,14 @@ resource "aws_security_group" "sg_public" {
 }
 
 ###########   public sg rules ############
+resource "aws_vpc_security_group_ingress_rule" "allow_https_rule" {
+  security_group_id = aws_security_group.sg_public.id
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 443
+  ip_protocol       = "tcp"
+  to_port           = 443
+}
+
 resource "aws_vpc_security_group_ingress_rule" "allow_http_rule" {
   security_group_id = aws_security_group.sg_public.id
   cidr_ipv4         = "0.0.0.0/0"
@@ -51,6 +59,16 @@ resource "aws_vpc_security_group_ingress_rule" "sg_private_allow_ssh_rule" {
   from_port         = 22
   to_port           = 22
   ip_protocol       = "tcp"
+  
+}
+
+resource "aws_vpc_security_group_ingress_rule" "sg_private_allow_icmp_rule" {
+  security_group_id = aws_security_group.sg_private.id
+  referenced_security_group_id = aws_security_group.sg_public.id
+
+  from_port         = -1
+  to_port           = -1
+  ip_protocol       = "icmp"
   
 }
 

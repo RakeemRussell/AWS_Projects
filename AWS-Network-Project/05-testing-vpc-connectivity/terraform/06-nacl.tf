@@ -7,8 +7,8 @@ resource "aws_network_acl" "public_nacl" {
     rule_no    = 110
     action     = "allow"
     cidr_block = "0.0.0.0/0"
-    from_port  = 80
-    to_port    = 80
+    from_port  = 1024
+    to_port    = 65535
   }
 
   ingress {
@@ -25,8 +25,8 @@ resource "aws_network_acl" "public_nacl" {
     rule_no    = 130
     action     = "allow"
     cidr_block = "0.0.0.0/0"
-    from_port  = 22
-    to_port    = 22
+    from_port  = 1024
+    to_port    = 65535
   }
 
   ingress {
@@ -38,6 +38,23 @@ resource "aws_network_acl" "public_nacl" {
     to_port    = 22
   }
 
+    egress {
+    protocol   = "tcp"
+    rule_no    = 130
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 1024
+    to_port    = 65535
+  }
+
+  ingress {
+    protocol   = "tcp"
+    rule_no    = 140
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 443
+    to_port    = 443
+  }
   tags = {
     Name = "public_nacl"
   }
