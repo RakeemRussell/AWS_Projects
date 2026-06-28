@@ -12,11 +12,11 @@ resource "aws_route_table" "public-rtb" {
   }
 }
 ################## public rtb route
-resource "aws_route" "to internet route" {
-  route_table_id         = aws_route_table.public-rtb.id
-  destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = aws_internet_gateway.igw_us_east_1.id
-}
+# resource "aws_route" "to-internet-route" {
+#   route_table_id         = aws_route_table.public-rtb.id
+#   destination_cidr_block = "0.0.0.0/0"
+#   gateway_id             = aws_internet_gateway.igw_us_east_1.id
+# }
 
 ################## public rtb association
 resource "aws_route_table_association" "public_association" {

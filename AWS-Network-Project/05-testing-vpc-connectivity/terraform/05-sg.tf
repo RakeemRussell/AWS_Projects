@@ -54,7 +54,7 @@ resource "aws_vpc_security_group_ingress_rule" "sg_private_allow_ssh_rule" {
   
 }
 
-resource "aws_vpc_security_group_egress_rule" "allow-all-outbound" {
+resource "aws_vpc_security_group_egress_rule" "allow-all-private-outbound" {
   security_group_id = aws_security_group.sg_private.id
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "-1"
