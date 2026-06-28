@@ -1,0 +1,56 @@
+:::::::::::::::::::::::::::::::::::::::::::
+Network Architecture:
+:::::::::::::::::::::::::::::::::::::::::::
+region it's designed for:
+    n.virginia_us-east-1
+
+vpc-cidr:
+    10.90.0.0/16
+
+1 public subnet:
+    us-east-1a: 10.90.1.0/24
+
+1 private subnet:
+    us-east-1a: 10.90.10.0/24
+
+:::::::::::::::::::::::::::::::::::::::::::
+Architecture Required Resources:
+:::::::::::::::::::::::::::::::::::::::::::
+VPC
+Public Subnet
+Private Subnet
+IGW
+Public Route Table
+Private Route Table
+Public Route
+Private Route
+Public Route Table Association
+Private Route Table Association
+Public Security Group
+Private Security Group
+Public NACL
+Private NACL
+Public NACL Association
+Private NACL Association
+Public EC2
+Private EC2
+
+:::::::::::::::::::::::::::::::::::::::::::
+Architecture Required Connections:
+:::::::::::::::::::::::::::::::::::::::::::
+Resource------------------> Must Reference
+
+VPC-----------------------> Nothing
+Subnets-------------------> VPC
+IGW-----------------------> VPC
+Route Tables--------------> VPC
+Route---------------------> Route Table + IGW
+Route Table Association---> Subnet + Route Table
+Security Group------------> VPC
+NACL----------------------> VPC
+NACL Association----------> Subnet + NACL
+EC2-----------------------> Subnet + Security Group
+
+
+
+

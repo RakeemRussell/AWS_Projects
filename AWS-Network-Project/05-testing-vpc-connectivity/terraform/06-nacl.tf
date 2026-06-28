@@ -20,22 +20,13 @@ resource "aws_network_acl" "public_nacl" {
     to_port    = 80
   }
 
-  tags = {
-    Name = "public_nacl"
-  }
-}
-
-############## PRIVATE NACL ########################
-resource "aws_network_acl" "private_nacl" {
-  vpc_id = aws_vpc.us-east-1.id
-
-  egress {
+    egress {
     protocol   = "tcp"
     rule_no    = 100
     action     = "allow"
     cidr_block = "0.0.0.0/0"
-    from_port  = 80
-    to_port    = 80
+    from_port  = 22
+    to_port    = 22
   }
 
   ingress {
@@ -43,11 +34,50 @@ resource "aws_network_acl" "private_nacl" {
     rule_no    = 100
     action     = "allow"
     cidr_block = "0.0.0.0/0"
-    from_port  = 80
-    to_port    = 80
+    from_port  = 22
+    to_port    = 22
+  }
+
+  tags = {
+    Name = "public_nacl"
+  }
+}
+
+############## PUBLIC NACL ASSOCIATION ########################
+resource "aws_network_acl_association" "public_nacl_assoc" {
+  subnet_id      = aws_subnet.public_subnet.id
+  network_acl_id = aws_network_acl.public_nacl.id
+}
+
+############## PRIVATE NACL #########################
+resource "aws_network_acl" "private_nacl" {
+  vpc_id = aws_vpc.us-east-1.id
+
+  egress {
+    protocol   = "-1"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = aws_vpc.us-east-1.cidr_block
+    from_port  = 0
+    to_port    = 0
+  }
+
+  ingress {
+    protocol   = "-1"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = aws_vpc.us-east-1.cidr_block
+    from_port  = 0
+    to_port    = 0
   }
 
   tags = {
     Name = "private_nacl"
   }
+}
+
+############## PRIVATE NACL ASSOCIATION ########################
+resource "aws_network_acl_association" "private_nacl_assoc" {
+  subnet_id      = aws_subnet.private_subnet.id
+  network_acl_id = aws_network_acl.private_nacl.id
 }

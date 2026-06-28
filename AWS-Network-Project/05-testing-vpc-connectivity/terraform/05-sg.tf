@@ -9,20 +9,28 @@ resource "aws_security_group" "sg_public" {
   }
 }
 
-resource "aws_vpc_security_group_ingress_rule" "allow_tls_rule" {
+###########   public sg rules ############
+resource "aws_vpc_security_group_ingress_rule" "allow_http_rule" {
   security_group_id = aws_security_group.sg_public.id
-  cidr_ipv4         = aws_vpc.us-east-1.cidr_block
-  from_port         = 443
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 80
   ip_protocol       = "tcp"
-  to_port           = 443
+  to_port           = 80
 }
 
-resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_rule" {
+resource "aws_vpc_security_group_ingress_rule" "allow_ssh_rule" {
+  security_group_id = aws_security_group.sg_public.id
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 22
+  ip_protocol       = "tcp"
+  to_port           = 22
+}
+
+resource "aws_vpc_security_group_egress_rule" "allow-all-outbound" {
   security_group_id = aws_security_group.sg_public.id
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "-1"
 }
-
 
 ###########   private sg ############
 resource "aws_security_group" "sg_private" {
@@ -35,15 +43,18 @@ resource "aws_security_group" "sg_private" {
   }
 }
 
-resource "aws_vpc_security_group_ingress_rule" "sg_private_allow_tls_rule" {
+###########   private sg rules ############
+resource "aws_vpc_security_group_ingress_rule" "sg_private_allow_ssh_rule" {
   security_group_id = aws_security_group.sg_private.id
-  cidr_ipv4         = aws_vpc.us-east-1.cidr_block
-  from_port         = 443
+  referenced_security_group_id = aws_security_group.sg_public.id
+
+  from_port         = 22
+  to_port           = 22
   ip_protocol       = "tcp"
-  to_port           = 443
+  
 }
 
-resource "aws_vpc_security_group_egress_rule" "sg_private_allow_all_traffic_rule" {
+resource "aws_vpc_security_group_egress_rule" "allow-all-outbound" {
   security_group_id = aws_security_group.sg_private.id
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "-1"
