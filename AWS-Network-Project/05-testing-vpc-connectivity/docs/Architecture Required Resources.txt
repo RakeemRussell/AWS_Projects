@@ -43,7 +43,7 @@ Resource------------------> Must Reference
 VPC-----------------------> Nothing
 Subnets-------------------> VPC
 IGW-----------------------> VPC
-Route Tables--------------> VPC
+Route Tables--------------> VPC + IGW
 Route---------------------> Route Table + IGW
 Route Table Association---> Subnet + Route Table
 Security Group------------> VPC

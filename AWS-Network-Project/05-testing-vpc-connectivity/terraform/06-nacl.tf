@@ -40,7 +40,7 @@ resource "aws_network_acl" "public_nacl" {
 
     egress {
     protocol   = "tcp"
-    rule_no    = 130
+    rule_no    = 150
     action     = "allow"
     cidr_block = "0.0.0.0/0"
     from_port  = 1024
@@ -49,7 +49,7 @@ resource "aws_network_acl" "public_nacl" {
 
   ingress {
     protocol   = "tcp"
-    rule_no    = 140
+    rule_no    = 160
     action     = "allow"
     cidr_block = "0.0.0.0/0"
     from_port  = 443
@@ -72,7 +72,7 @@ resource "aws_network_acl" "private_nacl" {
 
   egress {
     protocol   = "-1"
-    rule_no    = 150
+    rule_no    = 170
     action     = "allow"
     cidr_block = aws_vpc.us-east-1.cidr_block
     from_port  = 0
@@ -81,7 +81,7 @@ resource "aws_network_acl" "private_nacl" {
 
   ingress {
     protocol   = "-1"
-    rule_no    = 160
+    rule_no    = 180
     action     = "allow"
     cidr_block = aws_vpc.us-east-1.cidr_block
     from_port  = 0
