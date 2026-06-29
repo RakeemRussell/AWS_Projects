@@ -12,13 +12,13 @@
 - Subnet
 - AWS IGW
 - AWS RTBs
-- Network ACL
 - AWS Security Groups
+- AWS NACL
 - Amazon EC2
 
 ### Tools
 
-- AWS CLI
+- Terraform
 - Git and GitHub
 - VS Code
 - AWS Management Console
@@ -29,7 +29,7 @@
 - Infrastructure Automation
 - Routing
 - Access Control
-- Bash Scripting
+- Terraform
 - Technical Documentation
 
 ### Troubleshooting Skills
@@ -41,3 +41,31 @@
 - Verification of Security Groups
 
 ## Screenshots
+
+![Screenshots](screenshots/vpc-build.png)
+
+![Screenshots](screenshots/subnet-public-build.png)
+
+![Screenshots](screenshots/subnet-private-build.png)
+
+![Screenshots](screenshots/igw-build.png)
+
+![Screenshots](screenshots/rtb-public-build.png)
+
+![Screenshots](screenshots/rtb-private-build.png)
+
+![Screenshots](screenshots/rtb-association-public-build.png)
+
+![Screenshots](screenshots/rtb-association-private-build.png)
+
+![Screenshots](screenshots/sg-public-build.png)
+
+![Screenshots](screenshots/sg-private-build.png)
+
+![Screenshots](screenshots/nacl-public-build.png)
+
+![Screenshots](screenshots/nacl-private-build.png)
+
+![Screenshots](screenshots/ec2-public-build.png)
+
+![Screenshots](screenshots/ec2-private-build.png)
