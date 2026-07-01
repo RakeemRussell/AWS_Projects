@@ -18,7 +18,12 @@ resource "aws_network_acl" "public_nacl" {
     from_port  = 0
     to_port    = 0
   }
+
+    tags = {
+    Name = "public_nacl"
+  }
 }
+
 
 
 ############## PUBLIC NACL ASSOCIATION ########################
