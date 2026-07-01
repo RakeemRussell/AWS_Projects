@@ -167,4 +167,23 @@ PRIVATE SUBNET: CIDR_10.90.11.0/24 -> AZ_us-east-1a -> PURPOSE_Hosts internal re
 
 ![Screenshots](screenshots/ec2-private-build.png)
 
-## Testing_Public_Server_Connectivity Screenshots
+## Security_Group_And_NACL_Rules Screenshots
+
+## Testing_VPC_Connectivity Screenshots
+
+![Screenshots](screenshots/testing-vpc-connectivity-diagram.png)
+
+**ec2 public instance connect**
+![Screenshots](screenshots/ec2-public-connect.png)
+
+**ec2 public terminal**
+![Screenshots](screenshots/ec2-public-terminal.png)
+![Screenshots](screenshots/client-to-public-server-connectivity-diagram.png)
+
+**ec2 public and private connectivity ping test**
+![Screenshots](screenshots/ec2-public-and-private-connectivity-ping-test.png)
+![Screenshots](screenshots/public-to-private-server-connectivity-diagram.png)
+
+**ec2 public and internet connectivity curl test**
+![Screenshots](screenshots/ec2-public-and-internet-connectivity-curl-test.png)
+![Screenshots](screenshots/public-server-to-internet-connectivity-diagram.png)
